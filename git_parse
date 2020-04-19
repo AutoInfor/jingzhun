@@ -1,0 +1,37 @@
+
+str="""        token = self.tokens.look()
+        if self.would_accept('{'):
+   -        block = self.parse_block()
+   +        return tree.BlockStatement(statements=block)
+   +        statement = tree.BlockStatement(statements=block)
+   -        statement._position = token.position
+            return statement
+            return statement
+            return statement
+   +        block = self.parse_block()
+   -        return tree.BlockStatement(statements=block)
+   +        statement = tree.BlockStatement(statements=block)
+   -        statement._position = token.position            
+            
+            """
+def str_parse(str,line_start):
+    line_list=[]
+    line=line_start
+    block_start=True
+    for i in str.split('\n'):
+        if '-   ' in i:
+            line_list.append(line)
+
+            block_start=False
+
+            line += 1
+        if '+   ' in i:
+            if block_start:
+                line_list.append(line)
+                block_start=False
+        if '-   ' not in i and '+   ' not in i:
+            block_start=True
+            line += 1
+
+    return line_list
+print(str_parse(str,100))
